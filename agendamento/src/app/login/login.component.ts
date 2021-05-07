@@ -1,29 +1,36 @@
-import { formatCurrency } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
-import { NotificationService } from '../ds-components/notification.service';
+import { Credentials } from '../models/credentials';
+import { Empresa } from '../models/empresa';
+import { EmpresaService } from '../services/empresa.service';
+import { LoginService } from '../services/login.service';
+
 
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html'
 })
 
-export class LoginComponent {
+export class LoginComponent implements OnInit{
   title = 'dsvarejo';
-  empresas = 
-    [{ id: '1', fantasia: 'Empresa 1' },
-      { id: '2', fantasia: 'Empresa 2' },
-      { id: '3', fantasia: 'Empresa 3' },
-      { id: '4', fantasia: 'Empresa 4' }
-    ];
+  credentials : Credentials;  
+  empresas : Empresa[];
+  _empresaService : EmpresaService;
   
-    constructor(private notifyService : NotificationService)
+    constructor(private loginService : LoginService, private empresaService : EmpresaService)
     {
-      
+      this.credentials = new Credentials();
+      this._empresaService = empresaService;
     }
 
-    onClickEntrar(value : any = undefined): void {
-      if()  
-      this.notifyService.showWarning("Usuário e/ou Senha inválidos.")
+    ngOnInit(): void {
+      this.empresas = this._empresaService.getEmpresas();
+    }
+
+    onClickEntrar(): void {
+
+      this.credentials.login = (<HTMLInputElement>document.getElementById("tbUsuario")).value;
+      this.credentials.password = (<HTMLInputElement>document.getElementById("tbSenha")).value;
+      this.loginService.getToken(this.credentials);                
     };
 
 }
