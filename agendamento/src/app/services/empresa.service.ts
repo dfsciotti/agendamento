@@ -1,25 +1,20 @@
-import { Injectable } from '@angular/core';
+import { Injectable } from '@angular/core';  
 import { HttpClient } from '@angular/common/http';
-import { Empresa } from '../models/empresa';
-import { NotificationService } from '../ds-components/notification.service';
+import { Observable } from 'rxjs';
+import { EmpresaDto } from '../models/empresa';
+import { map } from "rxjs/operators"; 
 
 @Injectable({
   providedIn: 'root'
 })
 export class EmpresaService {
 
-  private apiUrl = 'https://localhost:44365/api/empresa';  
+  private apiUrl = 'https://localhost:44365/api/empresa_dto';  
 
-  constructor(private http: HttpClient, private notifyService : NotificationService) { }
+  constructor(private http: HttpClient) { }  
+      
+  getEmpresas(): Observable<EmpresaDto[]> {  
+      return this.http.get(this.apiUrl).pipe(map((response: any) => response.json())); 
+  }   
 
-  getEmpresas() : any
-  {
-    const headers = { 'content-type': 'application/json'} 
-
-    this.http.get<Empresa[]>(this.apiUrl, {'headers':headers}).subscribe(data => {     
-        return data;   
-    },
-    error => this.notifyService.showWarning("Usuário e/ou Senha inválidos."))
-
-  }
 }

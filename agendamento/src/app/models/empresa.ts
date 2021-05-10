@@ -26,3 +26,9 @@ export class Empresa
     public UsuAlteracao : string;
     public DtaAlteracao : Date;
 }
+
+export class EmpresaDto
+{
+    public Id : string;
+    public Fantasia : string;    
+}
