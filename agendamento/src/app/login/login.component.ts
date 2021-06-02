@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Observable } from 'rxjs';
 import { Credentials } from '../models/credentials';
 import { EmpresaDto } from '../models/empresa';
 import { EmpresaService } from '../services/empresa.service';
@@ -13,27 +14,25 @@ import { LoginService } from '../services/login.service';
 export class LoginComponent {
   title = 'dsvarejo';
   credentials : Credentials;  
-  empresas : EmpresaDto[];
+  empresas : Observable<any>;
+
   
     constructor(private loginService : LoginService, private empresaService : EmpresaService)
     {
       this.credentials = new Credentials();
+      this.getEmpresas();
+    }
 
-      this.empresaService.getEmpresas()
-      .subscribe((emp: EmpresaDto[]) => {
-        this.empresas = emp,
-          emp.forEach(function (e) {
-              this.empresaDropdown.options.push({ key: this.e.Id, value: this.e.Fantasia });        
-          });
-    
-      });
+    getEmpresas() : void
+    {
+        this.empresas = this.empresaService.getEmpresas();
     }
 
     onClickEntrar(): void {
 
       this.credentials.login = (<HTMLInputElement>document.getElementById("tbUsuario")).value;
       this.credentials.password = (<HTMLInputElement>document.getElementById("tbSenha")).value;
-      this.loginService.getToken(this.credentials);                
+      this.loginService.getToken(this.credentials);          
     };
 
 }
