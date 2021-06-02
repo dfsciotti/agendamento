@@ -48,7 +48,7 @@ html {
     background: #fff;
     padding: 30px;
     width: 90%;
-    max-width: 450px;
+    max-width: 380px;
     position: relative;
     padding: 0px;
     -webkit-box-shadow: 0 30px 60px 0 rgba(0,0,0,0.3);
@@ -82,7 +82,7 @@ html {
   
   /* FORM TYPOGRAPHY*/
   
-  input[type=button], input[type=submit], input[type=reset]  {
+  /* input[type=button], input[type=submit], input[type=reset]  {
     background-color: #56baed;
     border: none;
     color: white;
@@ -116,24 +116,22 @@ html {
     -o-transform: scale(0.95);
     -ms-transform: scale(0.95);
     transform: scale(0.95);
-  }
+  } */
   
-  input[type=text] {
-    padding: 5px 15px;
-    display: inline-block;
-    font-size: 16px;
-    margin: 5px;
-    width: 85%;
+  .input-group .input-group-text {
+    width: 20%;
   }
+
   
+/* 
   input[type=password] {
     padding: 5px 15px;
     display: inline-block;
     font-size: 16px;
     margin: 5px;
     width: 85%;
-  }
-  
+  } */
+
   /* ANIMATIONS */
   
   /* Simple CSS3 Fade-in-down Animation */

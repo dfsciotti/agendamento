@@ -8,11 +8,13 @@ import { DsDropdownComponent } from './ds-components/ds-dropdown/ds-dropdown.com
 import { ToastrModule } from 'ngx-toastr';
 import { HttpClientModule } from '@angular/common/http';
 import {FormsModule} from '@angular/forms';
+import { MenuComponent } from './menu/menu.component';
 
 @NgModule({
   declarations: [
     LoginComponent,
-    DsDropdownComponent
+    DsDropdownComponent,
+    MenuComponent
   ],
   imports: [
     BrowserModule,

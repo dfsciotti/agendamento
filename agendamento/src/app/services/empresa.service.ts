@@ -13,8 +13,8 @@ export class EmpresaService {
 
   constructor(private http: HttpClient) { }  
       
-  getEmpresas(): Observable<EmpresaDto[]> {  
-      return this.http.get(this.apiUrl).pipe(map((response: any) => response.json())); 
+  getEmpresas(): Observable<EmpresaDto> {  
+      return this.http.get<EmpresaDto>(this.apiUrl); 
   }   
 
 }
